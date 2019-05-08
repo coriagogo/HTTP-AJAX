@@ -5,8 +5,7 @@ import styled from 'styled-components';
 const FriendsListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 200px;
+  justify-content: space-around;  
   width: 90%;
   margin: 0 auto;
   
@@ -18,6 +17,12 @@ const FriendCardStyles = styled.div`
     background-color: #ffffff87;
     margin: 10px 0;
     padding: 10px;
+`
+
+const NameStyles = styled.span`
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 1000;
 `
 
 export default class FriendsList extends React.Component {
@@ -54,7 +59,7 @@ function FriendDetails({ friend }) {
     const { name, age, email } = friend;
     return (
         <FriendCardStyles>
-            <h2>{name}</h2>
+            <NameStyles>{name}</NameStyles>
             <div className="friend-age">
                 Age: {age}
             </div>

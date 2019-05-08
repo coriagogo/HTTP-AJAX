@@ -9,6 +9,7 @@ const AppStyles = styled.div`
 `
 
 const AppHeader = styled.div`
+  font-family: 'Caveat', cursive;
   text-align: center;
   font-size: 40px;
 `
