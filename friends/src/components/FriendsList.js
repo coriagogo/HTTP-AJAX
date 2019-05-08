@@ -1,5 +1,24 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const FriendsListWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 200px;
+  width: 90%;
+  margin: 0 auto;
+  
+`
+
+const FriendCardStyles = styled.div`
+    width: 45%;
+    border-radius: 10px;
+    background-color: #ffffff87;
+    margin: 10px 0;
+    padding: 10px;
+`
 
 export default class FriendsList extends React.Component {
     constructor(props) {
@@ -22,11 +41,11 @@ export default class FriendsList extends React.Component {
 
     render() {
         return(
-            <div className="friends-list">
+            <FriendsListWrapper>
                 {this.state.friends.map(friend => (
                     <FriendDetails key={friend.id} friend={friend} />
                 ))}
-            </div>
+            </FriendsListWrapper>
         );
     }
 }
@@ -34,7 +53,7 @@ export default class FriendsList extends React.Component {
 function FriendDetails({ friend }) {
     const { name, age, email } = friend;
     return (
-        <div className="friend-card">
+        <FriendCardStyles>
             <h2>{name}</h2>
             <div className="friend-age">
                 Age: {age}
@@ -42,6 +61,6 @@ function FriendDetails({ friend }) {
             <div className="friend-email">
                 Email: {email}
             </div>
-        </div>
+        </FriendCardStyles>
     );
 }
