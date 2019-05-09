@@ -7,11 +7,19 @@ import styled from 'styled-components';
 import './App.css';
 
 const AppStyles = styled.div`
-  
+
 `
 
 const AppNavStyles = styled.div`
-
+  font-family: 'Caveat', cursive;
+  text-align: right;
+  margin: 20px 20px 0 0;
+  font-size: 25px;
+  a {
+    text-decoration: none;
+    color: black;
+    padding: 0 10px;
+  }
 `
 
 const AppHeader = styled.div`
@@ -24,10 +32,10 @@ function App() {
   return (
     <AppStyles>
       <AppNavStyles>
-      <NavLink to="/friend-form">Add Friend</NavLink>
+        <NavLink exact to="/">Home</NavLink>
+        <NavLink to="/friend-form">Add Friend</NavLink>
       </AppNavStyles>
-      <AppHeader><h1>F&middot;R&middot;I&middot;E&middot;N&middot;D&middot;S</h1>
-      
+      <AppHeader><h1>F&middot;R&middot;I&middot;E&middot;N&middot;D&middot;S</h1>      
       </AppHeader>
       <Route exact path="/" component={FriendsList} />   
       <Route path="/friend"  component={Friend} />

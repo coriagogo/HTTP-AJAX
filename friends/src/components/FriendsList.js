@@ -19,6 +19,7 @@ const FriendCardStyles = styled.div`
     background-color: #ffffff87;
     margin: 10px 0;
     padding: 10px;
+    text-align: center;
 
     a {
         text-decoration: none;
