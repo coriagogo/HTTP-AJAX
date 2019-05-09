@@ -1,4 +1,45 @@
 import React from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+
+const FriendInput = styled.div`
+    text-align: center;
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+
+`
+
+const FormStyles = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 25%;    
+    margin: 0 auto;
+
+    
+
+    input {
+        background-color: #ffffff87;
+        font-size: 16px;
+        text-align: center;
+        height: 30px;
+        margin: 5px;
+        
+        ::placeholder {
+            color: white;
+            font-weight: bold;
+        }
+    }
+`
+
+const FriendButton = styled.button`
+    border: none;
+    background-color: transparent;
+    margin: 5px auto;
+    cursor: pointer;
+    font-size: 50px;
+    color: white;
+`
 
 class FriendForm extends React.Component {
     state = {
@@ -9,11 +50,47 @@ class FriendForm extends React.Component {
         }
     };
 
+    changeHandler = event => {
+        let value = event.target.value;
+        const name = event.target.name;        
+    
+
+        this.setState(prevState => ({
+            friend: {
+                ...prevState.friend,
+                [name]: value
+            }
+        }));
+    };
+
+    addFriend = event => {
+        
+        const [name, age, email] = [
+            this.state.name,
+            Number(this.state.age),
+            this.state.email
+        ];
+        this.setState({ name: "", age: "", email: ""});
+        axios
+            .post("http://localhost:5000/friends", {
+                name, 
+                age, 
+                email
+            })
+            .then(res => {
+                this.props.updateList(res.data);
+                this.props.history.push("/");
+            })
+            .catch(err => {
+                throw new Error(err);
+            });
+    };
+
    render () {
         return (
-            <div>
+            <FriendInput>
                 <h2>Add New Friend</h2>
-                <form>
+                <FormStyles onSubmit={this.handleSubmit}>
                     <input 
                     type="text"
                     name="name"
@@ -38,14 +115,13 @@ class FriendForm extends React.Component {
                     value={this.state.friend.email}
                 />
 
-                <button className="add-friend-btn">Add New Friend</button>
+                <FriendButton onClick={this.addFriend}><i class="fas fa-arrow-alt-circle-right"></i></FriendButton>
                 
-                </form>
+            </FormStyles>
 
-            </div>
+        </FriendInput>
         )
-
-   }
+    }
 }
 
 export default FriendForm;

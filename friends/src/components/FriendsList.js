@@ -20,6 +20,8 @@ const FriendCardStyles = styled.div`
     margin: 10px 0;
     padding: 10px;
     text-align: center;
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.24);
 
     a {
         text-decoration: none;
@@ -33,7 +35,6 @@ const NameStyles = styled.span`
     font-size: 30px;
     font-weight: 1000;
 `
-
 export default class FriendsList extends React.Component {
     constructor(props) {
         super(props);
@@ -51,7 +52,7 @@ export default class FriendsList extends React.Component {
             .catch(error => {
                 console.error('Server Error', error);
             });
-    }
+    }    
 
     render() {
         return(
@@ -70,12 +71,12 @@ function FriendDetails({ friend }) {
         <FriendCardStyles>     
             <Link to={`/friend/${friend.id}`}>              
                 <NameStyles>{name}</NameStyles>
-                    {/* <div className="friend-age">
+                    <div className="friend-age">
                         Age: {age}
                     </div>
                     <div className="friend-email">
                         Email: {email}
-                    </div> */}
+                    </div>
             </Link>
         </FriendCardStyles>
             

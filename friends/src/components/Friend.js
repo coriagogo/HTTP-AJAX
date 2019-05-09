@@ -17,22 +17,23 @@ export default class Friend extends React.Component {
     }
 
     render() {
-        const { friend } = this.state;
-        if (!this.state.friend) {
-            return <h3>Loading friend information...</h3>;
-        }
+        // const { friend } = this.state;
+        // if (!this.state) {
+        //     return <h3>Loading friend information...</h3>;
+        // } 
 
         
         return (
             <div className='friend-styles'>
-                <div className="friend-name">{friend.name}</div>
+                <div className="friend-name">{this.props.name}</div>
                 <div className="friend-age">
-                    Age: {friend.age}
+                    Age: {this.props.age}
                 </div>
                 <div className="friend-email">
-                    Email: {friend.email}
+                    Email: {this.props.email}
                 </div>
             </div>
         );
+
     }
 }
