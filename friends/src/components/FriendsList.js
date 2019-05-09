@@ -1,14 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { Link, NavLink } from 'react-router-dom';
+
+
 
 const FriendsListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;  
   width: 90%;
-  margin: 0 auto;
-  
+  margin: 0 auto;  
 `
 
 const FriendCardStyles = styled.div`
@@ -17,6 +19,12 @@ const FriendCardStyles = styled.div`
     background-color: #ffffff87;
     margin: 10px 0;
     padding: 10px;
+
+    a {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }   
 `
 
 const NameStyles = styled.span`
@@ -57,15 +65,19 @@ export default class FriendsList extends React.Component {
 
 function FriendDetails({ friend }) {
     const { name, age, email } = friend;
-    return (
-        <FriendCardStyles>
-            <NameStyles>{name}</NameStyles>
-            <div className="friend-age">
-                Age: {age}
-            </div>
-            <div className="friend-email">
-                Email: {email}
-            </div>
+    return (       
+        <FriendCardStyles>     
+            <Link to={`/friend/${friend.id}`}>              
+                <NameStyles>{name}</NameStyles>
+                    {/* <div className="friend-age">
+                        Age: {age}
+                    </div>
+                    <div className="friend-email">
+                        Email: {email}
+                    </div> */}
+            </Link>
         </FriendCardStyles>
+            
+        
     );
 }
