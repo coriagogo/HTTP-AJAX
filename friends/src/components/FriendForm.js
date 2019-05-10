@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 
 const FriendInput = styled.div`
@@ -14,9 +13,7 @@ const FormStyles = styled.form`
     display: flex;
     flex-direction: column;
     width: 25%;    
-    margin: 0 auto;
-
-    
+    margin: 0 auto;    
 
     input {
         background-color: #ffffff87;
@@ -63,28 +60,10 @@ class FriendForm extends React.Component {
         }));
     };
 
-    addFriend = event => {
-        
-        const [name, age, email] = [
-            this.state.name,
-            Number(this.state.age),
-            this.state.email
-        ];
-        this.setState({ name: "", age: "", email: ""});
-        axios
-            .post("http://localhost:5000/friends", {
-                name, 
-                age, 
-                email
-            })
-            .then(res => {
-                this.props.updateList(res.data);
-                this.props.history.push("/");
-            })
-            .catch(err => {
-                throw new Error(err);
-            });
-    };
+    handleSubmit = event => {
+        event.preventDefault();
+        this.props.addFriend(this.state.friend);
+    }
 
    render () {
         return (
