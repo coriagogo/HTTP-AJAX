@@ -20,6 +20,11 @@ const AppNavStyles = styled.div`
     text-decoration: none;
     color: black;
     padding: 0 10px;
+
+    @media (max-width: 1457px) {
+      background-color: #ffffff87;
+      
+    }
   }
 `
 
@@ -28,6 +33,10 @@ const AppHeader = styled.div`
   text-align: center;
   font-size: 40px;
   color: white;
+
+  
+    
+  
 `
 
 class App extends React.Component {
