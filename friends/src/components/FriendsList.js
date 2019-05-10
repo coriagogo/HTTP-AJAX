@@ -43,33 +43,26 @@ export default class FriendsList extends React.Component {
         };
     }
 
-    componentDidMount() {
-        axios
-            .get('http://localhost:5000/friends')
-            .then(response => {
-                this.setState(() => ({ friends: response.data }));
-            })
-            .catch(error => {
-                console.error('Server Error', error);
-            });
-    }    
+    
 
     render() {
+        console.log(this.props);
         return(
             <FriendsListWrapper>
-                {this.state.friends.map(friend => (
-                    <FriendDetails key={friend.id} friend={friend} />
+                {this.props.friends.map(friend => (
+                    <FriendDetails key={friend.id} friend={friend} deleteFriend={this.props.deleteFriend} />
+                    
                 ))}
             </FriendsListWrapper>
         );
     }
 }
 
-function FriendDetails({ friend }) {
-    const { name, age, email } = friend;
+function FriendDetails(props) {
+    const { name, age, email, id } = props.friend;
     return (       
         <FriendCardStyles>     
-            <Link to={`/friend/${friend.id}`}>              
+            {/* <Link to={`/friends-list/${friend.id}`}>               */}
                 <NameStyles>{name}</NameStyles>
                     <div className="friend-age">
                         Age: {age}
@@ -77,7 +70,9 @@ function FriendDetails({ friend }) {
                     <div className="friend-email">
                         Email: {email}
                     </div>
-            </Link>
+                    <button onClick={() => props.deleteFriend(id)}>Delete Friend</button>
+                    {/* <button onClick={this.updateForm}>Update Friend</button> */}
+            {/* </Link> */}
         </FriendCardStyles>
             
         

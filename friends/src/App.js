@@ -34,10 +34,21 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      friend: [],
+      friends: [],
       activeFriend: null
     };
   }
+
+  componentDidMount() {
+    axios
+        .get('http://localhost:5000/friends')
+        .then(response => {
+            this.setState(() => ({ friends: response.data }));
+        })
+        .catch(error => {
+            console.error('Server Error', error);
+        });
+}    
 
   addFriend = friend => {
     axios
@@ -75,6 +86,7 @@ class App extends React.Component {
   }
 
   render () {
+    console.log(this.state.friends);
     return (
       <AppStyles>
         <AppNavStyles>
@@ -89,22 +101,13 @@ class App extends React.Component {
           render={props => (
             <FriendsList
               {...props}
-              friends={this.state.friends}              
+              friends={this.state.friends}   
+              deleteFriend={this.deleteFriend}           
+              updateFriend={this.updateFriend}
+              setUpdateForm={this.setUpdateForm}
             />
           )}  
         />        
-
-        <Route 
-          path="/friends-list/:id"
-          render={props => (
-            <Friend
-              {...props}
-              friends={this.state.friends}
-              deleteFriend={this.deleteFriend}
-              setUpdateForm={this.setUpdateForm}
-            />
-          )}
-        />
 
         <Route 
           path="/friend-form" 

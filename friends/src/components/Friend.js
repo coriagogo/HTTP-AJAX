@@ -17,10 +17,10 @@ export default class Friend extends React.Component {
     }
 
     render() {
-        // const { friend } = this.state;
-        // if (!this.state) {
-        //     return <h3>Loading friend information...</h3>;
-        // } 
+        const { friend } = this.state;
+        if (!this.state.friend) {
+            return <h3>Loading friend information...</h3>;
+        } 
 
         
         return (
