@@ -33,7 +33,16 @@ const FriendCardStyles = styled.div`
 const NameStyles = styled.span`
     font-family: 'Caveat', cursive;
     font-size: 30px;
-    font-weight: 1000;
+    font-weight: 1000;   
+`
+
+const Button = styled.button`
+    border: none;
+    background-color: transparent;
+    margin: 5px auto;
+    cursor: pointer;
+    font-size: 30px;
+    color: black;
 `
 export default class FriendsList extends React.Component {
     constructor(props) {
@@ -70,8 +79,8 @@ function FriendDetails(props) {
                     <div className="friend-email">
                         Email: {email}
                     </div>
-                    <button onClick={() => props.deleteFriend(id)}>Delete Friend</button>
-                    <Link to="/update-form"><button>Update Friend</button></Link>
+                    <Button onClick={() => props.deleteFriend(id)}><i class="fas fa-trash-alt"></i></Button>
+                    <Link to="/update-form"><Button><i class="fas fa-edit"></i></Button></Link>
                     {/* <button onClick={this.updateForm}>Update Friend</button> */}
             {/* </Link> */}
         </FriendCardStyles>

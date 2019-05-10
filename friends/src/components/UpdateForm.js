@@ -40,7 +40,11 @@ const UpdateButton = styled.button`
 
 class UpdateForm extends React.Component {
     state = {
-        friend: this.props.activeFriend
+        friend: {
+            name: '',
+            age: '',
+            email: ''
+        }
     };
 
     changeHandler = event => {
@@ -89,7 +93,7 @@ class UpdateForm extends React.Component {
                         value={this.state.friend.email}
                     />
 
-                <UpdateButton onClick={this.updateFriend}>Update Friend</UpdateButton>
+                <UpdateButton onClick={this.updateFriend}><i class="fas fa-edit"></i></UpdateButton>
                 
             </UpdateStyles>
 
