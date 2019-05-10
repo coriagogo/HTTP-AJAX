@@ -71,6 +71,7 @@ function FriendDetails(props) {
                         Email: {email}
                     </div>
                     <button onClick={() => props.deleteFriend(id)}>Delete Friend</button>
+                    <Link to="/update-form"><button>Update Friend</button></Link>
                     {/* <button onClick={this.updateForm}>Update Friend</button> */}
             {/* </Link> */}
         </FriendCardStyles>

@@ -1,6 +1,6 @@
 import React from 'react';
 import FriendsList from './components/FriendsList';
-import Friend from './components/Friend';
+import UpdateForm from './components/UpdateForm';
 import FriendForm from './components/FriendForm';
 import { Route, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -115,10 +115,20 @@ class App extends React.Component {
             <FriendForm 
             {...props} 
             addFriend={this.addFriend}
+            
+          />
+        )} 
+      />
+
+      <Route
+        path="/update-form"
+        render={props => (
+          <UpdateForm
+            {...props}
             updateFriend={this.updateFriend} 
             activeFriend={this.state.activeFriend}
           />
-        )} 
+        )}
       />
       </AppStyles>
     );
